@@ -79,6 +79,29 @@ document.addEventListener("DOMContentLoaded", () => {
     input.focus();
   });
 
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const teks = input.value.trim();
+      if (!teks) {
+        alert("Teks harus diisi!");
+        input.focus();
+        return;
+      }
+      if (teks.length > 25) {
+        alert("Jangan terlalu panjang!");
+        input.focus();
+        return;
+      }
+
+      todos.push({ text: teks, checked: false });
+      saveData();
+      render();
+
+      input.value = "";
+      input.focus();
+    }
+  });
+
   // Render awal
   render();
 });
